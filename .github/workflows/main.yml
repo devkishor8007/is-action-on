@@ -1,0 +1,19 @@
+name: nodejs is-action-on
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm test
+      - run: node app.js
+      - run: npm run build --if-present
